@@ -1,0 +1,112 @@
+Script started on 2026-10-30 15:24:53+07:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="91" LINES="44"]
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mwhich mtdinfo flash_e[27m[7mr[27m[7mase nandwrite nanddump mkfs.jffs2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ which mtdinfo flash_erase nandwrite nanddump mkfs.jffs2
+[?2004l/usr/sbin/mtdinfo
+/usr/sbin/flash_erase
+/usr/sbin/nandwrite
+/usr/sbin/nanddump
+/usr/sbin/mkfs.jffs2
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo modprobe nandsim[27m[7m [27m[7mfirst_id_byte=0x20 second_id_byte=0x35[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo modprobe nandsim first_id_byte=0x20 second_id_byte=0x35
+[?2004l[sudo] password for lethetruong: 
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mcat /proc/mtd[27mcat /proc/mtd
+[?2004ldev:    size   erasesize  name
+mtd0: 00800000 00001000 "BIOS"
+mtd1: 01000000 00001000 "BIOS1"
+mtd2: 02000000 00004000 "NAND simulator partition 0"
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo mtdinfo /dev/mtd[27m[7m2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo mtdinfo /dev/mtd2
+[?2004lmtd2
+Name:                           NAND simulator partition 0
+Type:                           nand
+Eraseblock size:                16384 bytes, 16.0 KiB
+Amount of eraseblocks:          2048 (33554432 bytes, 32.0 MiB)
+Minimum input/output unit size: 512 bytes
+Sub-page size:                  256 bytes
+OOB size:                       16 bytes
+Character device major/minor:   90:4
+Bad blocks are allowed:         true
+Device is writable:             true
+
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo flash_erase /dev[27m[7m/[27m[7mmtd2 0 0[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo flash_erase /dev/mtd2 0 0
+[?2004lErasing 32768 Kibyte @ 0 --  0 % complete Erasing 32768 Kibyte @ 0 -- 100 % complete 
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mmkdir -p /tmp/jffs2_d[27m[7ma[27m[7mta/logs[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ mkdir -p /tmp/jffs2_data/logs
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mecho "Hello from Embe[27m[7md[27m[7mded Linux LAB-02!" > /tmp/jffs2_data/hello.txt[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ echo "Hello from Embedded Linux LAB-02!" > /tmp/jffs2_data/hello.txt
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mecho "This is a JFFS2[27m[7m [27m[7mfilesystem test." > /tmp/jffs2_data/info.txt[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ echo "This is a JFFS2 filesystem test." > /tmp/jffs2_data/info.txt
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mecho "LAB-02 NAND Fla[27m[7ms[27m[7mh test successful." > /tmp/jffs2_data/logs/boot.log[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ echo "LAB-02 NAND Flash test successful." > /tmp/jffs2_data/logs/boot.log
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mfind /tmp/jffs2_data [27m[7m-[27m[7mtype f -exec sh -c 'echo "===== $1 ====="; cat "$1"' _ {} \;[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ find /tmp/jffs2_data -type f -exec sh -c 'echo "===== $1 ====="; cat "$1"' _ {} \;
+[?2004l===== /tmp/jffs2_data/logs/boot.log =====
+LAB-02 NAND Flash test successful.
+===== /tmp/jffs2_data/info.txt =====
+This is a JFFS2 filesystem test.
+===== /tmp/jffs2_data/hello.txt =====
+Hello from Embedded Linux LAB-02!
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo mkfs.jffs2 \[27m
+[7m--root=/tmp/jffs2_data \[27m
+[7m--eraseblock=0x4000 \[27m
+[7m--output=/tmp/rootfs.jffs2 \[27m
+[7m--pad \[27m
+[7m--no-cleanmarkers[27m[A[A[A[A[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo mkfs.jffs2 \
+--root=/tmp/jffs2_data \
+--eraseblock=0x4000 \
+--output=/tmp/rootfs.jffs2 \
+--pad \
+--no-cleanmarkers
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mls -lh /tmp/rootfs.jf[27m[7mf[27m[7ms2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ ls -lh /tmp/rootfs.jffs2
+[?2004l-rw-r--r-- 1 root root 16K Oct 30 15:27 /tmp/rootfs.jffs2
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mfile /tmp/rootfs.jffs[27m[7m2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ file /tmp/rootfs.jffs2
+[?2004l/tmp/rootfs.jffs2: Linux jffs2 filesystem data little endian
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo nandwrite -p /de[27m[7mv[27m[7m/mtd2 /tmp/rootfs.jffs2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo nandwrite -p /dev/mtd2 /tmp/rootfs.jffs2
+[?2004lWriting data to block 0 at offset 0x0
+Written 30 blocks containing only 0xff bytes
+Those block may be incorrectly treated as empty!
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo modprobe mtdbloc[27m[7mk[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo modprobe mtdblock
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo modprobe jffs2[27msudo modprobe jffs2
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo mkdir -p /mnt/jf[27m[7mf[27m[7ms2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo mkdir -p /mnt/jffs2
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo mount -t jffs2 /[27m[7md[27m[7mev/mtdblock2 /mnt/jffs2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo mount -t jffs2 /dev/mtdblock2 /mnt/jffs2
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mls -R /mnt/jffs2[27mls -R /mnt/jffs2
+[?2004l/mnt/jffs2:
+hello.txt  info.txt  [0m[01;34mlogs[0m
+
+/mnt/jffs2/logs:
+boot.log
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mcat /mnt/jffs2/hello.[27m[7mt[27m[7mxt[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ cat /mnt/jffs2/hello.txt
+[?2004lHello from Embedded Linux LAB-02!
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mcat /mnt/jffs2/info.t[27m[7mx[27m[7mt[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ cat /mnt/jffs2/info.txt
+[?2004lThis is a JFFS2 filesystem test.
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mcat /mnt/jffs2/logs/b[27m[7mo[27m[7mot.log[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ cat /mnt/jffs2/logs/boot.log
+[?2004lLAB-02 NAND Flash test successful.
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mecho "JFFS2 persisten[27m[7mc[27m[7me test passed." | sudo tee /mnt/jffs2/runtime.txt[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ echo "JFFS2 persistence test passed." | sudo tee /mnt/jffs2/runtime.txt
+[?2004lJFFS2 persistence test passed.
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mcat /mnt/jffs2/runtim[27m[7me[27m[7m.txt[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ cat /mnt/jffs2/runtime.txt
+[?2004lJFFS2 persistence test passed.
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo umount /mnt/jffs[27m[7m2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo umount /mnt/jffs2
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo mount -t jffs2 /[27m[7md[27m[7mev/mtdblock2 /mnt/jffs2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo mount -t jffs2 /dev/mtdblock2 /mnt/jffs2
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mcat /mnt/jffs2/runtim[27m[7me[27m[7m.txt[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ cat /mnt/jffs2/runtime.txt
+[?2004lJFFS2 persistence test passed.
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo nanddump -o -l 5[27m[7m1[27m[7m2 -f /tmp/dump.bin /dev/mtd2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo nanddump -o -l 512 -f /tmp/dump.bin /dev/mtd2
+[?2004lECC failed: 0
+ECC corrected: 0
+Number of bad blocks: 0
+Number of bbt blocks: 0
+Block size 16384, page size 512, OOB size 16
+Dumping data starting at 0x00000000 and ending at 0x00000200...
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo nanddump -o -l 5[27m[7m1[27m[7m2 -f /tmp/dump.bin /dev/mtd2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo nanddump -o -l 51[1P2 -f /tmp/dump.bin /dev/mtd[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[7mhexdump -C /tmp/dump.[27m[7mb[27m[7min | head[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ hexdump -C /tmp/dump.bin | head
+[?2004l00000000  85 19 01 e0 31 00 00 00  1d d9 82 42 01 00 00 00  |....1......B....|
+00000010  00 00 00 00 02 00 00 00  b7 54 e4 6a 09 08 00 00  |.........T.j....|
+00000020  89 9f b9 af 15 da 69 f4  68 65 6c 6c 6f 2e 74 78  |......i.hello.tx|
+00000030  74 ff ff ff 85 19 02 e0  66 00 00 00 a8 9c cc 92  |t.......f.......|
+00000040  02 00 00 00 01 00 00 00  b4 81 00 00 e8 03 e8 03  |................|
+00000050  22 00 00 00 b7 54 e4 6a  b7 54 e4 6a b7 54 e4 6a  |"....T.j.T.j.T.j|
+00000060  00 00 00 00 22 00 00 00  22 00 00 00 00 00 00 00  |...."...".......|
+00000070  ca 27 9b 32 61 05 03 d5  48 65 6c 6c 6f 20 66 72  |.'.2a...Hello fr|
+00000080  6f 6d 20 45 6d 62 65 64  64 65 64 20 4c 69 6e 75  |om Embedded Linu|
+00000090  78 20 4c 41 42 2d 30 32  21 0a ff ff 85 19 01 e0  |x LAB-02!.......|
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo umount /mnt/jffs[27m[7m2[27m[A]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ sudo umount /mnt/jffs2
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7msudo rmmod nandsim[27msudo rmmod nandsim
+[?2004l[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mcat /proc/mtd[27mcat /proc/mtd
+[?2004ldev:    size   erasesize  name
+mtd0: 00800000 00001000 "BIOS"
+mtd1: 01000000 00001000 "BIOS1"
+[?2004h]0;lethetruong@lethetruong-Vostro-5590: ~/embedded_lab2/rootfs/initramfs[01;32mlethetruong@lethetruong-Vostro-5590[00m:[01;34m~/embedded_lab2/rootfs/initramfs[00m$ [7mexit[27mexit
+[?2004lexit
+
+Script done on 2026-10-30 15:31:54+07:00 [COMMAND_EXIT_CODE="0"]
